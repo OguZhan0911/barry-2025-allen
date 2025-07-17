@@ -1,35 +1,92 @@
 import SwiftUI
+import SafariServices
 
 struct ProfileView: View {
+    @State private var showAboutWeb = false
+    @State private var showLogin = false
+    @State private var isLoggedIn = false // 简单登录状态
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("User")) {
-                    HStack {
+            VStack(spacing: 0) {
+                // 顶部栏，含设置按钮
+                HStack {
+                    Text("Personal")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                    }
+                }
+                .padding()
+                .background(Color.blue)
+                // 用户信息
+                VStack(spacing: 8) {
+                    Button(action: {
+                        if !isLoggedIn {
+                            showLogin = true
+                        }
+                    }) {
                         Image(systemName: "person.crop.circle")
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 60, height: 60)
                             .foregroundColor(.blue)
-                        VStack(alignment: .leading) {
-                            Text("Guest User")
-                                .font(.headline)
-                            Text("Welcome to HyperMarket!")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                    }
+                    Text(isLoggedIn ? "Guest User" : "Not Logged In")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text("Welcome to HyperMarket!")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.vertical)
+                // 其他信息
+                Form {
+                    Section(header: Text("Others")) {
+                        NavigationLink(destination: Text("Info")) {
+                            Label("Info", systemImage: "bell")
+                        }
+                        NavigationLink(destination: Text("Feedback")) {
+                            Label("Feedback", systemImage: "text.bubble")
+                        }
+                        Button(action: { showAboutWeb = true }) {
+                            Label("About us", systemImage: "info.circle")
+                        }
+                        .sheet(isPresented: $showAboutWeb) {
+                            SafariView(url: URL(string: "http://www.barry-allen.com/")!)
                         }
                     }
                 }
-                Section(header: Text("Settings")) {
-                    Toggle(isOn: .constant(false)) {
-                        Text("Dark Mode (Coming Soon)")
-                    }
-                    NavigationLink(destination: Text("About HyperMarket")) {
-                        Text("About")
-                    }
+                .padding(.top, -16)
+            }
+            .navigationBarHidden(true)
+            .sheet(isPresented: $showLogin) {
+                LoginView(isLoggedIn: $isLoggedIn)
+            }
+        }
+    }
+}
+
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        SFSafariViewController(url: url)
+    }
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
+}
+
+struct SettingsView: View {
+    var body: some View {
+        Form {
+            Section(header: Text("Settings")) {
+                Toggle(isOn: .constant(false)) {
+                    Text("Dark Mode (Coming Soon)")
                 }
             }
-            .navigationTitle("Profile")
         }
+        .navigationTitle("Settings")
     }
 }
 
