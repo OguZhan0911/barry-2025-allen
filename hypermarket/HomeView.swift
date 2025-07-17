@@ -194,31 +194,7 @@ struct HomeView: View {
                     .padding()
                 }
                 // Bottom TabBar
-                Divider()
-                HStack {
-                    VStack {
-                        Image(systemName: "house.fill")
-                        Text("Index").font(.caption)
-                    }.foregroundColor(.blue)
-                    Spacer()
-                    VStack {
-                        Image(systemName: "newspaper")
-                        Text("News").font(.caption)
-                    }.foregroundColor(.gray)
-                    Spacer()
-                    VStack {
-                        Image(systemName: "doc.text.magnifyingglass")
-                        Text("Rating").font(.caption)
-                    }.foregroundColor(.gray)
-                    Spacer()
-                    VStack {
-                        Image(systemName: "person")
-                        Text("Personal").font(.caption)
-                    }.foregroundColor(.gray)
-                }
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
-                .background(Color.white)
+                // (已移除多余的自定义TabBar)
             }
             .background(Color(.systemGray6).ignoresSafeArea())
             .navigationBarHidden(true)

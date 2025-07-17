@@ -17,17 +17,17 @@ struct ContentView: View {
                 }
             ArticlesView()
                 .tabItem {
-                    Image(systemName: "book")
+                    Image(systemName: "doc.text")
                     Text("Articles")
                 }
             ToolsView()
                 .tabItem {
-                    Image(systemName: "wrench")
+                    Image(systemName: "wrench.and.screwdriver")
                     Text("Tools")
                 }
             ProfileView()
                 .tabItem {
-                    Image(systemName: "person")
+                    Image(systemName: "person.crop.circle")
                     Text("Profile")
                 }
         }
