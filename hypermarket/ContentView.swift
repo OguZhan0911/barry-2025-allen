@@ -15,10 +15,10 @@ struct ContentView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            ArticlesView()
+            NewsView()
                 .tabItem {
-                    Image(systemName: "doc.text")
-                    Text("Articles")
+                    Image(systemName: "newspaper")
+                    Text("News")
                 }
             ToolsView()
                 .tabItem {
