@@ -1,5 +1,4 @@
 import SwiftUI
-import SafariServices
 
 struct ProfileView: View {
     @State private var showAboutWeb = false
@@ -67,14 +66,6 @@ struct ProfileView: View {
             }
         }
     }
-}
-
-struct SafariView: UIViewControllerRepresentable {
-    let url: URL
-    func makeUIViewController(context: Context) -> SFSafariViewController {
-        SFSafariViewController(url: url)
-    }
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
 
 struct SettingsView: View {

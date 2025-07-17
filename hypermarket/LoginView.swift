@@ -7,6 +7,9 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    @State private var showAgreement = false
+    @State private var showPrivacy = false
+    @State private var isAgreed = true
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
@@ -57,11 +60,36 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }
-            Text("Upon login you agree the User's agreement and Privacy policy")
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: 320)
+            // 富文本提示
+            HStack(alignment: .top, spacing: 8) {
+                Button(action: { isAgreed.toggle() }) {
+                    Image(systemName: isAgreed ? "checkmark.square.fill" : "square")
+                        .foregroundColor(isAgreed ? .blue : .gray)
+                }
+                .buttonStyle(PlainButtonStyle())
+                Text(makeAgreementText())
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: 320, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .onOpenURL { url in
+                        if url.absoluteString.contains("agreement") {
+                            showAgreement = true
+                        } else if url.absoluteString.contains("pp") {
+                            showPrivacy = true
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        showPrivacy = true
+                    }
+            }
+                .sheet(isPresented: $showAgreement) {
+                    SafariView(url: URL(string: "http://www.barry-allen.com/agreement")!)
+                }
+                .sheet(isPresented: $showPrivacy) {
+                    SafariView(url: URL(string: "http://www.barry-allen.com/pp")!)
+                }
             Spacer()
             Rectangle()
                 .fill(Color.gray.opacity(0.2))
@@ -73,4 +101,23 @@ struct LoginView: View {
         }
         .padding()
     }
+}
+
+private func makeAgreementText() -> AttributedString {
+    var str = AttributedString("Upon login you agree the User's agreement and Privacy policy.")
+    if let range = str.range(of: "User's agreement") {
+        str[range].foregroundColor = .blue
+        str[range].underlineStyle = .single
+        str[range].link = URL(string: "http://www.barry-allen.com/agreement")!
+    }
+    if let range = str.range(of: "Privacy policy") {
+        str[range].foregroundColor = .blue
+        str[range].underlineStyle = .single
+        str[range].link = URL(string: "http://www.barry-allen.com/pp")!
+    }
+    return str
+}
+
+#Preview {
+    LoginView(isLoggedIn: .constant(false))
 } 
