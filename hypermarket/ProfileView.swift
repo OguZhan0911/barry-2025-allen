@@ -11,16 +11,16 @@ struct ProfileView: View {
                 HStack {
                     Text("Personal")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.primary)
                     Spacer()
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gearshape.fill")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.primary)
                             .imageScale(.large)
                     }
                 }
                 .padding()
-                .background(Color.blue)
+                .background(Color(.systemBackground))
                 // 用户信息
                 VStack(spacing: 8) {
                     Button(action: {
@@ -65,19 +65,6 @@ struct ProfileView: View {
                 LoginView(isLoggedIn: $isLoggedIn)
             }
         }
-    }
-}
-
-struct SettingsView: View {
-    var body: some View {
-        Form {
-            Section(header: Text("Settings")) {
-                Toggle(isOn: .constant(false)) {
-                    Text("Dark Mode (Coming Soon)")
-                }
-            }
-        }
-        .navigationTitle("Settings")
     }
 }
 
