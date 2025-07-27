@@ -1,6 +1,5 @@
 import SwiftUI
 import Foundation
-
 // 只保留struct HomeView: View及其内容，移除ViewModel和数据结构定义
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
@@ -13,9 +12,10 @@ struct HomeView: View {
                 // Top Logo
                 HStack {
                     // FIXME: Replace with actual logo image
-                    Text("logo")
+                    Text("Barry Allen")
+//                        .font(AppFonts.title)
                         .font(.custom("Snell Roundhand", size: 28))
-                        .foregroundColor(.blue)
+                        .foregroundColor(AppColors.primary)
                     Spacer()
                 }
                 .padding([.top, .horizontal])
@@ -28,16 +28,16 @@ struct HomeView: View {
                         // Banner area
                         ZStack(alignment: .leading) {
                             RoundedRectangle(cornerRadius: 16)
-                                .fill(LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.8), .cyan]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .fill(LinearGradient(gradient: Gradient(colors: [AppColors.primary.opacity(0.8), AppColors.secondary]), startPoint: .topLeading, endPoint: .bottomTrailing))
                                 .frame(height: 140)
                             HStack {
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text("Finance")
-                                        .font(.title)
+                                        .font(AppFonts.title)
                                         .fontWeight(.bold)
                                         .foregroundColor(.white)
                                     Text("Your Robust Rating Support. Find the most fit bank you need.\nSign up for better benefits and insights.")
-                                        .font(.caption)
+                                        .font(AppFonts.caption)
                                         .foregroundColor(.white.opacity(0.9))
                                     Button(action: {
                                         if !userInfo.isLoggedIn {
@@ -47,11 +47,11 @@ struct HomeView: View {
                                         }
                                     }) {
                                         Text("Create very loan")
-                                            .font(.caption)
+                                            .font(AppFonts.caption)
                                             .padding(.horizontal, 16)
                                             .padding(.vertical, 6)
-                                            .background(Color.white)
-                                            .foregroundColor(.blue)
+                                            .background(AppColors.card)
+                                            .foregroundColor(AppColors.primary)
                                             .cornerRadius(12)
                                     }
                                 }
@@ -76,7 +76,7 @@ struct HomeView: View {
                                         .frame(width: 40, height: 40)
                                         .foregroundColor(.orange)
                                     Text("Rating")
-                                        .font(.subheadline)
+                                        .font(AppFonts.subheadline)
                                 }
                                 VStack {
                                     // FIXME: Replace with actual icon
@@ -85,16 +85,16 @@ struct HomeView: View {
                                         .frame(width: 40, height: 40)
                                         .foregroundColor(.purple)
                                     Text("Guide")
-                                        .font(.subheadline)
+                                        .font(AppFonts.subheadline)
                                 }
                                 VStack {
                                     // FIXME: Replace with actual icon
                                     Image(systemName: "checkmark.seal.fill")
                                         .resizable()
                                         .frame(width: 40, height: 40)
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(AppColors.primary)
                                     Text("Bouns")
-                                        .font(.subheadline)
+                                        .font(AppFonts.subheadline)
                                 }
                             }
                             Spacer()
@@ -103,14 +103,14 @@ struct HomeView: View {
                         // Financial institution ratings
                         HStack {
                             Text("Financial institution ratings")
-                                .font(.headline)
+                                .font(AppFonts.headline)
                             Spacer()
                             Button(action: {
                                 showBankList = true
                             }) {
                                 Text("more")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
+                                    .font(AppFonts.subheadline)
+                                    .foregroundColor(AppColors.primary)
                             }
                             .background(
                                 NavigationLink(destination: BankListView(banks: viewModel.institutionList), isActive: $showBankList) {
@@ -145,25 +145,25 @@ struct HomeView: View {
                                             .padding(.top, 16)
                                         }
                                         Text(institution.institutionName)
-                                            .font(.subheadline)
+                                            .font(AppFonts.subheadline)
                                             .multilineTextAlignment(.center)
                                         HStack(spacing: 2) {
                                             ForEach(0..<5) { i in
                                                 Image(systemName: i < Int(institution.rating) ? "star.fill" : "star")
                                                     .resizable()
                                                     .frame(width: 12, height: 12)
-                                                    .foregroundColor(.yellow)
+                                                    .foregroundColor(AppColors.star)
                                             }
                                             Text(String(format: "%.1f score", institution.rating))
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
+                                                .font(AppFonts.caption)
+                                                .foregroundColor(AppColors.textSecondary)
                                         }
                                         Spacer(minLength: 8)
                                     }
                                     .frame(width: 140, height: 150)
                                     .background(
                                         RoundedRectangle(cornerRadius: 8)
-                                            .fill(Color.blue.opacity(0.1))
+                                            .fill(AppColors.primary.opacity(0.1))
                                     )
                                 }
                             }
@@ -171,34 +171,34 @@ struct HomeView: View {
                         // Financial Knowledge
                         HStack {
                             Text("Financial Knowledge")
-                                .font(.headline)
+                                .font(AppFonts.headline)
                             Spacer()
                             Button(action: {/* FIXME: more knowledge */}) {
                                 Text("more")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
+                                    .font(AppFonts.subheadline)
+                                    .foregroundColor(AppColors.primary)
                             }
                         }
                         VStack(spacing: 12) {
                             ForEach(viewModel.knowledgeList, id: \.self) { item in
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(item.title)
-                                        .font(.subheadline)
+                                        .font(AppFonts.subheadline)
                                         .fontWeight(.semibold)
                                     Text(item.desc)
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
+                                        .font(AppFonts.caption)
+                                        .foregroundColor(AppColors.textSecondary)
                                     HStack(spacing: 16) {
                                         Text("Read \(item.reads)")
-                                            .font(.caption2)
-                                            .foregroundColor(.gray)
+                                            .font(AppFonts.caption)
+                                            .foregroundColor(AppColors.tagText)
                                         Text("Likes \(item.likes)")
-                                            .font(.caption2)
-                                            .foregroundColor(.gray)
+                                            .font(AppFonts.caption)
+                                            .foregroundColor(AppColors.tagText)
                                     }
                                 }
                                 .padding()
-                                .background(Color(.systemGray6))
+                                .background(AppColors.background)
                                 .cornerRadius(12)
                             }
                         }
@@ -209,7 +209,7 @@ struct HomeView: View {
                 // Bottom TabBar
                 // (已移除多余的自定义TabBar)
             }
-            .background(Color(.systemGray6).ignoresSafeArea())
+            .background(AppColors.background.ignoresSafeArea())
             .navigationBarHidden(true)
             .sheet(isPresented: $showLoginSheet) {
                 LoginView()
