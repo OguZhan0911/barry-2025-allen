@@ -6,6 +6,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @StateObject private var userInfo = UserInfoManager.shared
     @State private var showLoginSheet = false
+    @State private var showBankList = false
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -104,11 +105,19 @@ struct HomeView: View {
                             Text("Financial institution ratings")
                                 .font(.headline)
                             Spacer()
-                            Button(action: {/* FIXME: more ratings */}) {
+                            Button(action: {
+                                showBankList = true
+                            }) {
                                 Text("more")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
                             }
+                            .background(
+                                NavigationLink(destination: BankListView(banks: viewModel.institutionList), isActive: $showBankList) {
+                                    EmptyView()
+                                }
+                                .hidden()
+                            )
                         }
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
