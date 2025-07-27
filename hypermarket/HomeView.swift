@@ -1,28 +1,9 @@
 import SwiftUI
+import Foundation
 
-struct BankRating: Hashable {
-    let name: String
-    let rating: Double
-}
-
-struct KnowledgeItem: Hashable {
-    let title: String
-    let desc: String
-    let reads: Int
-    let likes: Int
-}
-
+// 只保留struct HomeView: View及其内容，移除ViewModel和数据结构定义
 struct HomeView: View {
-    // Sample data
-    let bankRatings: [BankRating] = [
-        BankRating(name: "China Merchants Bank", rating: 4.5),
-        BankRating(name: "China CITIC Bank", rating: 4.5),
-        BankRating(name: "China CITIC Bank", rating: 4.0)
-    ]
-    let knowledgeList: [KnowledgeItem] = [
-        KnowledgeItem(title: "How to improve loan approval rate?", desc: "Detailed explanation of key factors affecting loan approval, including credit history, income proof, years of employment, etc., to help you better prepare your loan application materials.", reads: 2456, likes: 328),
-        KnowledgeItem(title: "2024 Latest Loan Policy Interpretation", desc: "Interpret the latest changes in loan policies, including interest rate adjustments, eligibility requirements, quota restrictions, and other important information to help you keep up with market trends.", reads: 1892, likes: 256)
-    ]
+    @StateObject private var viewModel = HomeViewModel()
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -123,25 +104,40 @@ struct HomeView: View {
                         }
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
-                                ForEach(bankRatings, id: \.self) { bank in
+                                ForEach(viewModel.institutionList, id: \.id) { institution in
                                     VStack(alignment: .center, spacing: 8) {
-                                        Image(systemName: "creditcard")
-                                            .resizable()
-                                            .scaledToFit()
+//                                        if institution.institutionImage.hasSuffix(".svg") {
+//                                            if let url = URL(string: institution.institutionImage) {
+//                                                SVGImageView(url: url)
+//                                                    .frame(width: 48, height: 48)
+//                                                    .padding(.top, 16)
+//                                            } else {
+//                                                Image(systemName: "photo")
+//                                                    .resizable()
+//                                                    .scaledToFit()
+//                                                    .frame(width: 48, height: 48)
+//                                                    .padding(.top, 16)
+//                                            }
+//                                        } else {
+                                            AsyncImage(url: URL(string: institution.institutionImage)) { image in
+                                                image.resizable().scaledToFit()
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
                                             .frame(width: 48, height: 48)
-                                            .foregroundColor(.blue)
                                             .padding(.top, 16)
-                                        Text(bank.name)
+//                                        }
+                                        Text(institution.institutionName)
                                             .font(.subheadline)
                                             .multilineTextAlignment(.center)
                                         HStack(spacing: 2) {
                                             ForEach(0..<5) { i in
-                                                Image(systemName: i < Int(bank.rating) ? "star.fill" : "star")
+                                                Image(systemName: i < Int(institution.rating) ? "star.fill" : "star")
                                                     .resizable()
                                                     .frame(width: 12, height: 12)
                                                     .foregroundColor(.yellow)
                                             }
-                                            Text(String(format: "%.1f score", bank.rating))
+                                            Text(String(format: "%.1f score", institution.rating))
                                                 .font(.caption)
                                                 .foregroundColor(.secondary)
                                         }
@@ -167,7 +163,7 @@ struct HomeView: View {
                             }
                         }
                         VStack(spacing: 12) {
-                            ForEach(knowledgeList, id: \.self) { item in
+                            ForEach(viewModel.knowledgeList, id: \.self) { item in
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(item.title)
                                         .font(.subheadline)
@@ -206,4 +202,4 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
-} 
+}
