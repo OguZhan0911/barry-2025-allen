@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Binding var isLoggedIn: Bool
     @Environment(\.presentationMode) var presentationMode
     @State private var isRegister = false
     @State private var email = ""
@@ -10,6 +9,7 @@ struct LoginView: View {
     @State private var showAgreement = false
     @State private var showPrivacy = false
     @State private var isAgreed = true
+    @ObservedObject private var userInfo = UserInfoManager.shared
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
@@ -50,7 +50,7 @@ struct LoginView: View {
                     .frame(maxWidth: 320)
             }
             Button(action: {
-                isLoggedIn = true
+                userInfo.login()
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text(isRegister ? "Register" : "Login")
@@ -119,5 +119,5 @@ private func makeAgreementText() -> AttributedString {
 }
 
 #Preview {
-    LoginView(isLoggedIn: .constant(false))
+    LoginView()
 } 

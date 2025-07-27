@@ -62,7 +62,7 @@ struct ProfileView: View {
             }
             .navigationBarHidden(true)
             .sheet(isPresented: $showLogin) {
-                LoginView(isLoggedIn: $isLoggedIn)
+                LoginView()
             }
         }
     }

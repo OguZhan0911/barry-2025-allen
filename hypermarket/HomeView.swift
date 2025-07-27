@@ -4,6 +4,8 @@ import Foundation
 // 只保留struct HomeView: View及其内容，移除ViewModel和数据结构定义
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
+    @StateObject private var userInfo = UserInfoManager.shared
+    @State private var showLoginSheet = false
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -36,7 +38,13 @@ struct HomeView: View {
                                     Text("Your Robust Rating Support. Find the most fit bank you need.\nSign up for better benefits and insights.")
                                         .font(.caption)
                                         .foregroundColor(.white.opacity(0.9))
-                                    Button(action: {/* FIXME: banner button action */}) {
+                                    Button(action: {
+                                        if !userInfo.isLoggedIn {
+                                            showLoginSheet = true
+                                        } else {
+                                            // 已登录后的操作
+                                        }
+                                    }) {
                                         Text("Create very loan")
                                             .font(.caption)
                                             .padding(.horizontal, 16)
@@ -194,6 +202,9 @@ struct HomeView: View {
             }
             .background(Color(.systemGray6).ignoresSafeArea())
             .navigationBarHidden(true)
+            .sheet(isPresented: $showLoginSheet) {
+                LoginView()
+            }
         }
     }
 }
