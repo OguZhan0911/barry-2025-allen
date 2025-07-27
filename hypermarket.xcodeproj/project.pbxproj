@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7302DC492E36764600438FC8 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7302DC482E36764600438FC8 /* Moya */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		73A540742E23CBA600789CFE /* hypermarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hypermarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7302DC492E36764600438FC8 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = hypermarket;
 			packageProductDependencies = (
+				7302DC482E36764600438FC8 /* Moya */,
 			);
 			productName = hypermarket;
 			productReference = 73A540742E23CBA600789CFE /* hypermarket.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 73A5406B2E23CBA600789CFE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7302DC472E36764600438FC8 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 73A540752E23CBA600789CFE /* Products */;
 			projectDirPath = "";
@@ -350,6 +359,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7302DC472E36764600438FC8 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7302DC482E36764600438FC8 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7302DC472E36764600438FC8 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 73A5406C2E23CBA600789CFE /* Project object */;
 }
