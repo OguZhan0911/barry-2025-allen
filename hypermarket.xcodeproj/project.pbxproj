@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7302DC492E36764600438FC8 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7302DC482E36764600438FC8 /* Moya */; };
+		7302DC542E3679F400438FC8 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7302DC532E3679F400438FC8 /* SVGKitSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7302DC542E3679F400438FC8 /* SVGKitSwift in Frameworks */,
 				7302DC492E36764600438FC8 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = hypermarket;
 			packageProductDependencies = (
 				7302DC482E36764600438FC8 /* Moya */,
+				7302DC532E3679F400438FC8 /* SVGKitSwift */,
 			);
 			productName = hypermarket;
 			productReference = 73A540742E23CBA600789CFE /* hypermarket.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				7302DC472E36764600438FC8 /* XCRemoteSwiftPackageReference "Moya" */,
+				7302DC522E3679F400438FC8 /* XCRemoteSwiftPackageReference "SVGKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 73A540752E23CBA600789CFE /* Products */;
@@ -369,6 +373,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		7302DC522E3679F400438FC8 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -376,6 +388,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7302DC472E36764600438FC8 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		7302DC532E3679F400438FC8 /* SVGKitSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7302DC522E3679F400438FC8 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKitSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

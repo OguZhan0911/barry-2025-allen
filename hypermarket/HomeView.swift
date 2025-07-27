@@ -106,19 +106,19 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 ForEach(viewModel.institutionList, id: \.id) { institution in
                                     VStack(alignment: .center, spacing: 8) {
-//                                        if institution.institutionImage.hasSuffix(".svg") {
-//                                            if let url = URL(string: institution.institutionImage) {
-//                                                SVGImageView(url: url)
-//                                                    .frame(width: 48, height: 48)
-//                                                    .padding(.top, 16)
-//                                            } else {
-//                                                Image(systemName: "photo")
-//                                                    .resizable()
-//                                                    .scaledToFit()
-//                                                    .frame(width: 48, height: 48)
-//                                                    .padding(.top, 16)
-//                                            }
-//                                        } else {
+                                        if institution.institutionImage.hasSuffix(".svg") {
+                                            if let url = URL(string: institution.institutionImage) {
+                                                SVGImageView(url: url)
+                                                    .frame(width: 48, height: 48)
+                                                    .padding(.top, 16)
+                                            } else {
+                                                Image(systemName: "photo")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 48, height: 48)
+                                                    .padding(.top, 16)
+                                            }
+                                        } else {
                                             AsyncImage(url: URL(string: institution.institutionImage)) { image in
                                                 image.resizable().scaledToFit()
                                             } placeholder: {
@@ -126,7 +126,7 @@ struct HomeView: View {
                                             }
                                             .frame(width: 48, height: 48)
                                             .padding(.top, 16)
-//                                        }
+                                        }
                                         Text(institution.institutionName)
                                             .font(.subheadline)
                                             .multilineTextAlignment(.center)
@@ -203,3 +203,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
