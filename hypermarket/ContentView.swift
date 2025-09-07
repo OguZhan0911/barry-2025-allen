@@ -13,22 +13,22 @@ struct ContentView: View {
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text(NSLocalizedString("tab_home", comment: "Home tab title"))
                 }
             NewsView()
                 .tabItem {
                     Image(systemName: "newspaper")
-                    Text("News")
+                    Text(NSLocalizedString("tab_news", comment: "News tab title"))
                 }
             ToolsView()
                 .tabItem {
                     Image(systemName: "wrench.and.screwdriver")
-                    Text("Tools")
+                    Text(NSLocalizedString("tab_tools", comment: "Tools tab title"))
                 }
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.crop.circle")
-                    Text("Profile")
+                    Text(NSLocalizedString("tab_profile", comment: "Profile tab title"))
                 }
         }
     }

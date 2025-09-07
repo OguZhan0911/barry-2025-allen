@@ -16,34 +16,34 @@ struct LoginView: View {
             Text("logo")
                 .font(.custom("Snell Roundhand", size: 32))
                 .foregroundColor(.blue)
-            Text("Help U Rating")
+            Text(NSLocalizedString("login_brand_tagline", comment: "Brand tagline on login"))
                 .font(.subheadline)
                 .foregroundColor(.gray)
             HStack {
                 Button(action: { isRegister = false }) {
-                    Text("Login")
+                    Text(NSLocalizedString("login_login", comment: "Login switch"))
                         .font(.headline)
                         .foregroundColor(isRegister ? .gray : .blue)
                 }
                 Button(action: { isRegister = true }) {
-                    Text("Register")
+                    Text(NSLocalizedString("login_register", comment: "Register switch"))
                         .font(.headline)
                         .foregroundColor(isRegister ? .blue : .gray)
                 }
             }
             .padding(.bottom, 8)
-            TextField("Enter your email", text: $email)
+            TextField(NSLocalizedString("login_placeholder_email", comment: "Email placeholder"), text: $email)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
                 .frame(maxWidth: 320)
-            SecureField("Password", text: $password)
+            SecureField(NSLocalizedString("login_placeholder_password", comment: "Password placeholder"), text: $password)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
                 .frame(maxWidth: 320)
             if isRegister {
-                SecureField("Confirm password", text: $confirmPassword)
+                SecureField(NSLocalizedString("login_placeholder_confirm", comment: "Confirm password placeholder"), text: $confirmPassword)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
@@ -53,7 +53,7 @@ struct LoginView: View {
                 userInfo.login()
                 presentationMode.wrappedValue.dismiss()
             }) {
-                Text(isRegister ? "Register" : "Login")
+                Text(isRegister ? NSLocalizedString("login_button_register", comment: "Register button") : NSLocalizedString("login_button_login", comment: "Login button"))
                     .frame(maxWidth: 320)
                     .padding()
                     .background(Color.blue)
@@ -96,7 +96,7 @@ struct LoginView: View {
                 .frame(height: 120)
                 .cornerRadius(8)
                 .frame(maxWidth: 340)
-                .overlay(Text("[Image]").foregroundColor(.gray))
+                .overlay(Text(NSLocalizedString("login_image_placeholder", comment: "Image placeholder text")).foregroundColor(.gray))
             Spacer()
         }
         .padding()
@@ -104,13 +104,13 @@ struct LoginView: View {
 }
 
 private func makeAgreementText() -> AttributedString {
-    var str = AttributedString("Upon login you agree the User's agreement and Privacy policy.")
-    if let range = str.range(of: "User's agreement") {
+    var str = AttributedString(NSLocalizedString("login_agreement_full", comment: "Full agreement text"))
+    if let range = str.range(of: NSLocalizedString("login_agreement_user", comment: "User agreement anchor")) {
         str[range].foregroundColor = .blue
         str[range].underlineStyle = .single
         str[range].link = URL(string: "http://www.barry-allen.com/agreement")!
     }
-    if let range = str.range(of: "Privacy policy") {
+    if let range = str.range(of: NSLocalizedString("login_agreement_privacy", comment: "Privacy policy anchor")) {
         str[range].foregroundColor = .blue
         str[range].underlineStyle = .single
         str[range].link = URL(string: "http://www.barry-allen.com/pp")!

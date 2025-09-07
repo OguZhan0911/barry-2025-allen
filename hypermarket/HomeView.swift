@@ -32,11 +32,11 @@ struct HomeView: View {
                                 .frame(height: 140)
                             HStack {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text("Finance")
+                                    Text(NSLocalizedString("home_banner_title", comment: "Home banner title"))
                                         .font(AppFonts.title)
                                         .fontWeight(.bold)
                                         .foregroundColor(.white)
-                                    Text("Your Robust Rating Support. Find the most fit bank you need.\nSign up for better benefits and insights.")
+                                    Text(NSLocalizedString("home_banner_subtitle", comment: "Home banner subtitle"))
                                         .font(AppFonts.caption)
                                         .foregroundColor(.white.opacity(0.9))
                                     Button(action: {
@@ -46,7 +46,7 @@ struct HomeView: View {
                                             // 已登录后的操作
                                         }
                                     }) {
-                                        Text("Create very loan")
+                                        Text(NSLocalizedString("home_banner_cta", comment: "CTA create loan"))
                                             .font(AppFonts.caption)
                                             .padding(.horizontal, 16)
                                             .padding(.vertical, 6)
@@ -75,7 +75,7 @@ struct HomeView: View {
                                         .resizable()
                                         .frame(width: 40, height: 40)
                                         .foregroundColor(.orange)
-                                    Text("Rating")
+                                    Text(NSLocalizedString("home_feature_rating", comment: "Feature Rating"))
                                         .font(AppFonts.subheadline)
                                 }
                                 VStack {
@@ -84,7 +84,7 @@ struct HomeView: View {
                                         .resizable()
                                         .frame(width: 40, height: 40)
                                         .foregroundColor(.purple)
-                                    Text("Guide")
+                                    Text(NSLocalizedString("home_feature_guide", comment: "Feature Guide"))
                                         .font(AppFonts.subheadline)
                                 }
                                 VStack {
@@ -93,7 +93,7 @@ struct HomeView: View {
                                         .resizable()
                                         .frame(width: 40, height: 40)
                                         .foregroundColor(AppColors.primary)
-                                    Text("Bouns")
+                                    Text(NSLocalizedString("home_feature_bonus", comment: "Feature Bonus"))
                                         .font(AppFonts.subheadline)
                                 }
                             }
@@ -102,13 +102,13 @@ struct HomeView: View {
                         .padding(.vertical, 8)
                         // Financial institution ratings
                         HStack {
-                            Text("Financial institution ratings")
+                            Text(NSLocalizedString("bank_list_title", comment: "Home list section title"))
                                 .font(AppFonts.headline)
                             Spacer()
                             Button(action: {
                                 showBankList = true
                             }) {
-                                Text("more")
+                                Text(NSLocalizedString("common_more", comment: "More"))
                                     .font(AppFonts.subheadline)
                                     .foregroundColor(AppColors.primary)
                             }
@@ -154,7 +154,7 @@ struct HomeView: View {
                                                     .frame(width: 12, height: 12)
                                                     .foregroundColor(AppColors.star)
                                             }
-                                            Text(String(format: "%.1f score", institution.rating))
+                                            Text(String(format: NSLocalizedString("home_score_format", comment: "Score format"), institution.rating))
                                                 .font(AppFonts.caption)
                                                 .foregroundColor(AppColors.textSecondary)
                                         }
@@ -170,11 +170,11 @@ struct HomeView: View {
                         }
                         // Financial Knowledge
                         HStack {
-                            Text("Financial Knowledge")
+                            Text(NSLocalizedString("home_financial_knowledge", comment: "Financial Knowledge title"))
                                 .font(AppFonts.headline)
                             Spacer()
                             Button(action: {/* FIXME: more knowledge */}) {
-                                Text("more")
+                                Text(NSLocalizedString("common_more", comment: "More"))
                                     .font(AppFonts.subheadline)
                                     .foregroundColor(AppColors.primary)
                             }
@@ -189,10 +189,10 @@ struct HomeView: View {
                                         .font(AppFonts.caption)
                                         .foregroundColor(AppColors.textSecondary)
                                     HStack(spacing: 16) {
-                                        Text("Read \(item.reads)")
+                                        Text(String(format: NSLocalizedString("home_read_count", comment: "Read count"), item.reads))
                                             .font(AppFonts.caption)
                                             .foregroundColor(AppColors.tagText)
-                                        Text("Likes \(item.likes)")
+                                        Text(String(format: NSLocalizedString("home_likes_count", comment: "Likes count"), item.likes))
                                             .font(AppFonts.caption)
                                             .foregroundColor(AppColors.tagText)
                                     }

@@ -11,22 +11,22 @@ struct ToolsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Articles")) {
+                Section(header: Text(NSLocalizedString("tools_section_articles", comment: "Articles section"))) {
                     ForEach(articles, id: \.self) { article in
                         NavigationLink(destination: Text(article)) {
                             Text(article)
                         }
                     }
                 }
-                Section(header: Text("Tools")) {
+                Section(header: Text(NSLocalizedString("tools_section_tools", comment: "Tools section"))) {
                     NavigationLink(destination: CompoundInterestCalculatorView()) {
-                        Text("Compound Interest Calculator")
+                        Text(NSLocalizedString("tools_compound_interest", comment: "Compound interest tool"))
                     }
-                    Text("Currency Converter (Coming Soon)")
-                    Text("Loan Calculator (Coming Soon)")
+                    Text(NSLocalizedString("tools_currency_converter", comment: "Currency converter placeholder"))
+                    Text(NSLocalizedString("tools_loan_calculator", comment: "Loan calculator placeholder"))
                 }
             }
-            .navigationTitle("Tools")
+            .navigationTitle(NSLocalizedString("tab_tools", comment: "Tools nav title"))
         }
     }
 }

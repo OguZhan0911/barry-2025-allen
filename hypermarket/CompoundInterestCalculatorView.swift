@@ -8,28 +8,28 @@ struct CompoundInterestCalculatorView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Input")) {
-                TextField("Principal Amount", text: $principal)
+            Section(header: Text(NSLocalizedString("ci_input", comment: "Input section"))) {
+                TextField(NSLocalizedString("ci_principal", comment: "Principal"), text: $principal)
                     .keyboardType(.decimalPad)
-                TextField("Annual Interest Rate (%)", text: $rate)
+                TextField(NSLocalizedString("ci_rate", comment: "Annual rate"), text: $rate)
                     .keyboardType(.decimalPad)
-                TextField("Years", text: $years)
+                TextField(NSLocalizedString("ci_years", comment: "Years"), text: $years)
                     .keyboardType(.numberPad)
             }
-            Button("Calculate") {
+            Button(NSLocalizedString("ci_calculate", comment: "Calculate")) {
                 calculateCompoundInterest()
             }
-            Section(header: Text("Result")) {
+            Section(header: Text(NSLocalizedString("ci_result", comment: "Result section"))) {
                 if let result = result {
-                    Text("Future Value: $\(String(format: "%.2f", result))")
+                    Text(String(format: NSLocalizedString("ci_future_value", comment: "Future value format"), result))
                         .font(.headline)
                 } else {
-                    Text("Enter values and tap Calculate.")
+                    Text(NSLocalizedString("ci_enter_values", comment: "Enter values hint"))
                         .foregroundColor(.secondary)
                 }
             }
         }
-        .navigationTitle("Compound Interest")
+        .navigationTitle(NSLocalizedString("ci_nav_title", comment: "CI nav title"))
     }
     
     func calculateCompoundInterest() {

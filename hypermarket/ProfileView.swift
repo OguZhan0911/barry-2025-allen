@@ -9,7 +9,7 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 // 顶部栏，含设置按钮
                 HStack {
-                    Text("Personal")
+                    Text(NSLocalizedString("profile_title", comment: "Profile title"))
                         .font(.headline)
                         .foregroundColor(Color.primary)
                     Spacer()
@@ -33,25 +33,25 @@ struct ProfileView: View {
                             .frame(width: 60, height: 60)
                             .foregroundColor(.blue)
                     }
-                    Text(isLoggedIn ? "Guest User" : "Not Logged In")
+                    Text(isLoggedIn ? NSLocalizedString("profile_guest_user", comment: "Guest user title") : NSLocalizedString("profile_not_logged_in", comment: "Not logged in status"))
                         .font(.title3)
                         .fontWeight(.semibold)
-                    Text("Welcome to HyperMarket!")
+                    Text(NSLocalizedString("profile_welcome", comment: "Welcome subtitle"))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
                 .padding(.vertical)
                 // 其他信息
                 Form {
-                    Section(header: Text("Others")) {
-                        NavigationLink(destination: Text("Info")) {
-                            Label("Info", systemImage: "bell")
+                    Section(header: Text(NSLocalizedString("profile_section_others", comment: "Others section title"))) {
+                        NavigationLink(destination: Text(NSLocalizedString("profile_info", comment: "Info title"))) {
+                            Label(NSLocalizedString("profile_info", comment: "Info label"), systemImage: "bell")
                         }
-                        NavigationLink(destination: Text("Feedback")) {
-                            Label("Feedback", systemImage: "text.bubble")
+                        NavigationLink(destination: Text(NSLocalizedString("profile_feedback", comment: "Feedback title"))) {
+                            Label(NSLocalizedString("profile_feedback", comment: "Feedback label"), systemImage: "text.bubble")
                         }
                         Button(action: { showAboutWeb = true }) {
-                            Label("About us", systemImage: "info.circle")
+                            Label(NSLocalizedString("profile_about_us", comment: "About us label"), systemImage: "info.circle")
                         }
                         .sheet(isPresented: $showAboutWeb) {
                             SafariView(url: URL(string: "http://www.barry-allen.com/")!)

@@ -6,21 +6,21 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Settings")) {
+            Section(header: Text(NSLocalizedString("settings_title", comment: "Settings section title"))) {
                 Toggle(isOn: $isDarkMode) {
-                    Text("Dark Mode")
+                    Text(NSLocalizedString("settings_dark_mode", comment: "Dark Mode"))
                 }
                 if isDarkMode {
                     HStack {
                         Spacer().frame(width: 24)
                         Toggle(isOn: $followSystem) {
-                            Text("Follow System")
+                            Text(NSLocalizedString("settings_follow_system", comment: "Follow System"))
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle(NSLocalizedString("settings_title", comment: "Settings nav title"))
         .background(Color(.systemBackground))
     }
 }

@@ -65,7 +65,7 @@ struct NewsView: View {
                 }
                 .padding(.top)
             }
-            .navigationTitle("News")
+            .navigationTitle(NSLocalizedString("news_nav_title", comment: "News navigation title"))
         }
     }
 }
