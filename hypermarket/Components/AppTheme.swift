@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppColors {
-    static let primary = Color.blue
+    static let primary = Color(red: 18/255, green: 150/255, blue: 219/255) // #1296db
     static let secondary = Color.cyan
     static let background = Color(.systemGray6)
     static let card = Color.white

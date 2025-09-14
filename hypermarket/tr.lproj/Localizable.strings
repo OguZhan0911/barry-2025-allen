@@ -53,5 +53,12 @@
 "ci_future_value" = "Gelecek Değer: $%.2f";
 "ci_enter_values" = "Değerleri girin ve Hesapla'ya dokunun.";
 "ci_nav_title" = "Bileşik Faiz";
-
+"login_error_email_required" = "Lütfen e-postanızı girin";
+"login_error_password_required" = "Lütfen şifrenizi girin";
+"login_error_confirm_password_required" = "Lütfen şifrenizi doğrulayın";
+"login_error_password_mismatch" = "Şifreler eşleşmiyor";
+"login_error_invalid_email" = "Lütfen geçerli bir e-posta adresi girin";
+"login_error_failed" = "Giriş başarısız, lütfen tekrar deneyin";
+"login_error_network" = "Ağ hatası: %@";
+"profile_logout" = "Çıkış Yap";
 

@@ -9,6 +9,8 @@ struct LoginView: View {
     @State private var showAgreement = false
     @State private var showPrivacy = false
     @State private var isAgreed = true
+    @State private var isLoading = false
+    @State private var errorMessage: String?
     @ObservedObject private var userInfo = UserInfoManager.shared
     var body: some View {
         VStack(spacing: 24) {
@@ -50,15 +52,29 @@ struct LoginView: View {
                     .frame(maxWidth: 320)
             }
             Button(action: {
-                userInfo.login()
-                presentationMode.wrappedValue.dismiss()
+                performLogin()
             }) {
-                Text(isRegister ? NSLocalizedString("login_button_register", comment: "Register button") : NSLocalizedString("login_button_login", comment: "Login button"))
+                HStack {
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(0.8)
+                    }
+                    Text(isRegister ? NSLocalizedString("login_button_register", comment: "Register button") : NSLocalizedString("login_button_login", comment: "Login button"))
+                }
+                .frame(maxWidth: 320)
+                .padding()
+                .background(isLoading ? Color.gray : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+            }
+            .disabled(isLoading || !isAgreed)
+            
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
                     .frame(maxWidth: 320)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
             }
             // 富文本提示
             HStack(alignment: .top, spacing: 8) {
@@ -100,6 +116,54 @@ struct LoginView: View {
             Spacer()
         }
         .padding()
+    }
+    
+    private func performLogin() {
+        // 清除之前的错误信息
+        errorMessage = nil
+        
+        // 基本验证
+        guard !email.isEmpty else {
+            errorMessage = NSLocalizedString("login_error_email_required", comment: "Email required error")
+            return
+        }
+        
+        guard !password.isEmpty else {
+            errorMessage = NSLocalizedString("login_error_password_required", comment: "Password required error")
+            return
+        }
+        
+        if isRegister {
+            guard !confirmPassword.isEmpty else {
+                errorMessage = NSLocalizedString("login_error_confirm_password_required", comment: "Confirm password required error")
+                return
+            }
+            
+            guard password == confirmPassword else {
+                errorMessage = NSLocalizedString("login_error_password_mismatch", comment: "Password mismatch error")
+                return
+            }
+        }
+        
+        // 邮箱格式验证
+        guard email.contains("@") && email.contains(".") else {
+            errorMessage = NSLocalizedString("login_error_invalid_email", comment: "Invalid email error")
+            return
+        }
+        
+        // 开始登录
+        isLoading = true
+        
+        userInfo.login(email: email, password: password) { success, message in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                if success {
+                    self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    self.errorMessage = message ?? NSLocalizedString("login_error_failed", comment: "Login failed error")
+                }
+            }
+        }
     }
 }
 

@@ -3,7 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     @State private var showAboutWeb = false
     @State private var showLogin = false
-    @State private var isLoggedIn = false // 简单登录状态
+    @ObservedObject private var userInfo = UserInfoManager.shared
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -24,7 +24,7 @@ struct ProfileView: View {
                 // 用户信息
                 VStack(spacing: 8) {
                     Button(action: {
-                        if !isLoggedIn {
+                        if !userInfo.isLoggedIn {
                             showLogin = true
                         }
                     }) {
@@ -33,12 +33,27 @@ struct ProfileView: View {
                             .frame(width: 60, height: 60)
                             .foregroundColor(.blue)
                     }
-                    Text(isLoggedIn ? NSLocalizedString("profile_guest_user", comment: "Guest user title") : NSLocalizedString("profile_not_logged_in", comment: "Not logged in status"))
+                    Text(userInfo.isLoggedIn ? NSLocalizedString("profile_guest_user", comment: "Guest user title") : NSLocalizedString("profile_not_logged_in", comment: "Not logged in status"))
                         .font(.title3)
                         .fontWeight(.semibold)
                     Text(NSLocalizedString("profile_welcome", comment: "Welcome subtitle"))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    
+                    if userInfo.isLoggedIn {
+                        Button(action: {
+                            userInfo.logout()
+                        }) {
+                            Text(NSLocalizedString("profile_logout", comment: "Logout button"))
+                                .font(.caption)
+                                .foregroundColor(.red)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Color.red.opacity(0.1))
+                                .cornerRadius(8)
+                        }
+                        .padding(.top, 8)
+                    }
                 }
                 .padding(.vertical)
                 // 其他信息

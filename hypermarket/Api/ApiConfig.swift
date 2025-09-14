@@ -7,4 +7,5 @@ struct ApiConfig {
 enum ApiPath: String {
     case getFinancialInstitutionRatings = "/financialInstitutionRatings/getFinancialInstitutionRatingsPublic"
     case getFinancialKnowledge = "/financialKnowledge/getFinancialKnowledgePublic"
+    case login = "/user/login"
 } 

@@ -53,5 +53,12 @@
 "ci_future_value" = "Future Value: $%.2f";
 "ci_enter_values" = "Enter values and tap Calculate.";
 "ci_nav_title" = "Compound Interest";
-
+"login_error_email_required" = "Please enter your email";
+"login_error_password_required" = "Please enter your password";
+"login_error_confirm_password_required" = "Please confirm your password";
+"login_error_password_mismatch" = "Passwords do not match";
+"login_error_invalid_email" = "Please enter a valid email address";
+"login_error_failed" = "Login failed, please try again";
+"login_error_network" = "Network error: %@";
+"profile_logout" = "Logout";
 
