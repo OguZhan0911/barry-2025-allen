@@ -61,4 +61,13 @@
 "login_error_failed" = "Giriş başarısız, lütfen tekrar deneyin";
 "login_error_network" = "Ağ hatası: %@";
 "profile_logout" = "Çıkış Yap";
+"feedback_title" = "Geri Bildirim";
+"feedback_description" = "Geri bildiriminizi değerli buluyoruz! Düşüncelerinizi, önerilerinizi paylaşın veya karşılaştığınız sorunları bildirin.";
+"feedback_input_label" = "Geri Bildiriminiz";
+"feedback_placeholder" = "Lütfen geri bildiriminizi, önerilerinizi veya sorunlarınızı detaylı olarak açıklayın...";
+"feedback_submit" = "Geri Bildirim Gönder";
+"feedback_success_title" = "Teşekkürler!";
+"feedback_success_message" = "Geri bildiriminiz başarıyla gönderildi. Katkınız için teşekkür ederiz!";
+"common_back" = "Geri";
+"common_ok" = "Tamam";
 

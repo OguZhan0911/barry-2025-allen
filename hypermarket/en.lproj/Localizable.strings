@@ -61,4 +61,13 @@
 "login_error_failed" = "Login failed, please try again";
 "login_error_network" = "Network error: %@";
 "profile_logout" = "Logout";
+"feedback_title" = "Feedback";
+"feedback_description" = "We value your feedback! Please share your thoughts, suggestions, or report any issues you've encountered.";
+"feedback_input_label" = "Your Feedback";
+"feedback_placeholder" = "Please describe your feedback, suggestions, or issues in detail...";
+"feedback_submit" = "Submit Feedback";
+"feedback_success_title" = "Thank You!";
+"feedback_success_message" = "Your feedback has been submitted successfully. We appreciate your input!";
+"common_back" = "Back";
+"common_ok" = "OK";
 

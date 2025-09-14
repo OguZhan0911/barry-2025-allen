@@ -62,7 +62,7 @@ struct ProfileView: View {
                         NavigationLink(destination: Text(NSLocalizedString("profile_info", comment: "Info title"))) {
                             Label(NSLocalizedString("profile_info", comment: "Info label"), systemImage: "bell")
                         }
-                        NavigationLink(destination: Text(NSLocalizedString("profile_feedback", comment: "Feedback title"))) {
+                        NavigationLink(destination: FeedbackView()) {
                             Label(NSLocalizedString("profile_feedback", comment: "Feedback label"), systemImage: "text.bubble")
                         }
                         Button(action: { showAboutWeb = true }) {
