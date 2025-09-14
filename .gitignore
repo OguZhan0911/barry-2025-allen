@@ -15,7 +15,7 @@ xcuserdata/
 
 # SwiftPM
 .build/
-Package.resolved
+# Package.resolved - 需要提交到版本控制以支持云端编译
 
 # CocoaPods
 Pods/
